@@ -1,0 +1,6 @@
+---
+  - name: Update RasberryPi Systems
+    shell: "{{ item }}"
+    with_items:
+      - "{{ update_commands }}"
+...

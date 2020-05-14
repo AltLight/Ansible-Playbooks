@@ -1,0 +1,20 @@
+---
+update_commands:
+  - sudo yum install -y epel-release
+  - sudo yum update -y
+
+default_apps:
+  - vim
+  - cockpit
+  - wget
+  - rsync
+  - tcpdump
+
+firewalld_commands:
+  - sudo firewall-cmd --add-service=cockpit --permanent
+  - sudo firewall-cmd --reload
+
+service_commands:
+  - sudo systemctl enable cockpit && sudo systemctl start cockpit
+  - sudo systemctl enable rsyslog && sudo systemctl start rsyslog
+...
