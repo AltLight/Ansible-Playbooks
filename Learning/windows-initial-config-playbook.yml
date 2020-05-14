@@ -1,0 +1,6 @@
+---
+- name: Initializing New Windows Client Machine(s)
+  hosts: winclients
+  roles:
+    - ./roles/initial-configuration/windows-common
+...
