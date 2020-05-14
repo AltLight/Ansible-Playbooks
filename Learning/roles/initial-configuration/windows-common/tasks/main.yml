@@ -1,0 +1,23 @@
+---
+  - name: Install all security, critical, and rollup updates on Windows Client(s)
+    win_updates: 
+      category_names:
+        - SecurityUpdates
+        - CriticalUpdates
+        - UpdateRollups
+      
+
+  - name: Join Windows Client(s) To the Domain
+    win_domain_membership: 
+      dns_domain_name: '{{ dns_name }}'
+      domain_admin_user: '{{ domain_admin_user }}'
+      domain_admin_password: '{{ vault_ad_admin_pass }}'
+      state: domain
+      register: domain_state
+
+  - name: Reboot After Joining Domain
+    win_reboot:
+      msg: "Joining domain, rebooting..."
+      pre_reboot_delay: 15
+    when: domain_state.reboot_required</pre>
+...

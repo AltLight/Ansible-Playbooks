@@ -1,0 +1,56 @@
+[local]
+localhost ansible_connection=local
+
+[allwindows:children]
+nazerick
+pleiades
+
+[dcs:children]
+nazerick
+pleiades
+
+[winclients:children]
+dev-win10
+
+[raspi:children]
+ntp
+pihole
+
+[centos7:children]
+confluence
+gitlab
+jenkins
+yum
+
+[centos8:children]
+dev-centos8
+
+[ntp]
+10.8.6.130 ansible_connection=ssh ansible_user=pi
+
+[pihole]
+172.16.0.5 ansible_connection=ssh ansible_user=pi
+
+[confluence]
+10.8.6.150 ansible_connection=ssh ansible_user=root
+
+[gitlab]
+10.8.6.155 ansible_connection=ssh ansible_user=root
+
+[jenkins]
+10.8.6.156 ansible_connection=ssh ansible_user=root
+
+[yum]
+10.8.6.149 ansible_connection=ssh ansible_user=root
+
+[dev-centos8]
+10.8.7.4 ansible_connection=ssh ansible_user=root
+
+[nazerick]
+10.8.5.4
+
+[pleiades]
+10.8.5.5
+
+[dev-win10]
+10.8.7.6

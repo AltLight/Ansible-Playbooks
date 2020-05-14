@@ -1,0 +1,16 @@
+---
+- name: Initializing New Centos 7 Machine(s)
+  hosts: centos7
+  roles:
+    - ./roles/initial-configuration/centos7
+
+- name: Initializing New Centos 8 Machine(s)
+  hosts: centos8
+  roles:
+    - ./roles/initial-configuration/centos8
+
+- name: Initializing New Windows Client Machine(s)
+  hosts: winclients
+  roles:
+    - ./roles/initial-configuration/windows-common
+...
