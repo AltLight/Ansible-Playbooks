@@ -2,12 +2,13 @@
 localhost ansible_connection=local
 
 [allwindows:children]
-nazerick
-pleiades
+foo
+bar
+dev-win10
 
 [dcs:children]
-nazerick
-pleiades
+foo
+bar
 
 [winclients:children]
 dev-win10
@@ -26,31 +27,31 @@ yum
 dev-centos8
 
 [ntp]
-10.8.6.130 ansible_connection=ssh ansible_user=pi
+x.x.x.x ansible_connection=ssh ansible_user=
 
 [pihole]
-172.16.0.5 ansible_connection=ssh ansible_user=pi
+x.x.x.x ansible_connection=ssh ansible_user=
 
 [confluence]
-10.8.6.150 ansible_connection=ssh ansible_user=root
+x.x.x.x ansible_connection=ssh ansible_user=
 
 [gitlab]
-10.8.6.155 ansible_connection=ssh ansible_user=root
+x.x.x.x ansible_connection=ssh ansible_user=
 
 [jenkins]
-10.8.6.156 ansible_connection=ssh ansible_user=root
+x.x.x.x ansible_connection=ssh ansible_user=
 
 [yum]
-10.8.6.149 ansible_connection=ssh ansible_user=root
+x.x.x.x ansible_connection=ssh ansible_user=
 
 [dev-centos8]
-10.8.7.4 ansible_connection=ssh ansible_user=root
+x.x.x.x ansible_connection=ssh ansible_user=
 
-[nazerick]
-10.8.5.4
+[foo]
+x.x.x.x
 
-[pleiades]
-10.8.5.5
+[bar]
+x.x.x.x
 
 [dev-win10]
-10.8.7.6
+x.x.x.x
