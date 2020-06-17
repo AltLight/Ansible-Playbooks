@@ -1,3 +1,7 @@
+[all:vars]
+ansible_connection=ssh
+ansible_port=22
+
 [local]
 localhost ansible_connection=local
 
@@ -7,29 +11,38 @@ bar
 dev-win10
 
 [dcs:children]
-foo
-bar
+nazerick
+pleiades
 
 [winclients:children]
 dev-win10
 
 [raspi:children]
-ntp
-pihole
+infraPi-01
+InfraPi-02
 
 [centos7:children]
 confluence
 gitlab
 jenkins
 yum
+kibana
+logstash
+elasticsearch
 
 [centos8:children]
 dev-centos8
 
-[ntp]
+[ubuntu20:children]
+dev-ubuntu
+plex
+thebroker
+htpc
+
+[InfraPi-01]
 x.x.x.x ansible_connection=ssh ansible_user=
 
-[pihole]
+[InfraPi-02]
 x.x.x.x ansible_connection=ssh ansible_user=
 
 [confluence]
@@ -47,11 +60,23 @@ x.x.x.x ansible_connection=ssh ansible_user=
 [dev-centos8]
 x.x.x.x ansible_connection=ssh ansible_user=
 
-[foo]
-x.x.x.x
+[dev-ubuntu]
+x.x.x.x ansible_connection=ssh ansible_user=
 
-[bar]
-x.x.x.x
+[htpc]
+x.x.x.x ansible_connection=ssh ansible_user=
+
+[plex]
+x.x.x.x ansible_connection=ssh ansible_user=
+
+[thebroker]
+x.x.x.x ansible_connection=ssh ansible_user=
 
 [dev-win10]
+x.x.x.x
+
+[pleiades]
+x.x.x.x
+
+[nazerick]
 x.x.x.x
