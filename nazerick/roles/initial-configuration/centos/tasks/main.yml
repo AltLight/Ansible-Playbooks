@@ -1,0 +1,38 @@
+---
+  - name: Create Network Directory
+    file:
+      path: /opt/nazerick
+      state: directory
+
+  - name: Copy Connect To Yum Script
+    copy:
+      src: /ansible/artifacts/Connect_To_Local_Yum_Repo.sh
+      dest: /opt/nazerick/Connect_To_Local_Yum_Repo.sh
+
+  - name: Configuring Yum
+    shell: "{{ item }}"
+    with_items:
+      - "{{ yumrun_commands }}"
+
+  - name: Update System(s)
+    shell: "{{ item }}"
+    with_items:
+      - "{{ update_commands }}"
+
+  - name: Install Package(s)
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - "{{ default_apps }}"
+
+  - name: Configure Firewall
+    shell: "{{ item }}"
+    with_items:
+      - "{{ firewalld_commands }}"
+
+  - name: Start & Enable Services
+    shell: "{{ item }}"
+    with_items:
+      - "{{ service_commands }}"
+...

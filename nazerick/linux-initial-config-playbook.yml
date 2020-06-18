@@ -1,16 +1,19 @@
 ---
-- name: Initializing RasberryPi Machine(s)
+- name: Installing RasberryPi Machine(s) Default Apps
   hosts: rasberrypi
+  become: yes
   roles:
     - ./roles/initial-configuration/rasberrypi
 
-- name: Initializing Centos  Machine(s)
+- name: Installing Centos Machine(s) Default Apps
   hosts: allcentos
+  become: yes
   roles:
     - ./roles/initial-configuration/centos
 
-- name: Initializing Ubuntu Machine(s)
+- name: Installing Ubuntu Machine(s) Default Apps
   hosts: allubuntu
+  become: yes
   roles:
     - ./roles/initial-configuration/ubuntu
 ...

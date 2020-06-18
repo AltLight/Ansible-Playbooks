@@ -1,0 +1,23 @@
+---
+  - name: Update System(s)
+    shell: "{{ item }}"
+    with_items:
+      - "{{ update_commands }}"
+
+  - name: Install Package(s)
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - "{{ default_apps }}"
+
+  - name: Copy config Files
+    copy:
+      src: /etc/ntp.conf
+      dest: /etc/ntp.conf
+  
+  - name: Start & Enable Services
+    shell: "{{ item }}"
+    with_items:
+      - "{{ service_commands }}"
+...

@@ -1,0 +1,51 @@
+[local]
+localhost ansible_connection=local
+
+[allwindows:children]
+windowsservers
+windowsclients
+domaincontrollers
+
+[allubuntu:children]
+ubuntu20
+
+[allcentos:children]
+centos7
+centos8
+
+[yum:children]
+allcentos
+
+[apt:children]
+allubuntu
+rasberrypi
+
+[update:children]
+yum
+apt
+
+[rasberrypi]
+infraPi-01 ansible_host=x.x.x.x ansible_connection=ssh ansible_user=pi
+infraPi-02 ansible_host=x.x.x.x ansible_connection=ssh ansible_user=pi
+
+[centos7]
+confluence ansible_host=x.x.x.x ansible_connection=ssh ansible_user=root
+gitlab ansible_host=x.x.x.x ansible_connection=ssh ansible_user=root
+jenkins ansible_host=x.x.x.x ansible_connection=ssh ansible_user=root
+yum ansible_host=x.x.x.x ansible_connection=ssh ansible_user=root
+
+[centos8]
+dev-centos8 ansible_host=x.x.x.x ansible_connection=ssh ansible_user=root
+
+[ubuntu20]
+plex ansible_host=x.x.x.x ansible_connection=ssh ansible_user=plex
+dev-ubuntu ansible_host=x.x.x.x ansible_connection=ssh ansible_user=
+htpc ansible_host=x.x.x.x ansible_connection=ssh ansible_user=wlight
+
+[domaincontrollers]
+nazerick ansible_host=x.x.x.x
+pleiades ansible_host=x.x.x.x
+
+[windowsservers]
+
+[windowsservers]

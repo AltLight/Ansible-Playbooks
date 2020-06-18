@@ -1,0 +1,26 @@
+---
+update_commands:
+  - apt update
+  - apt upgrade
+
+default_apps:
+  - vim
+  - wget
+  - rsync
+  - tcpdump
+  - rsyslog
+  - htop
+  - sssd
+  - realmd
+  - oddjob
+  - oddjob-mkhomedir
+  - adcli
+  - samba-common
+  - samba-common-tools
+  - krb5-workstation
+  - openldap-clients
+  - policycoreutils-python
+
+service_commands:
+  - sudo systemctl enable rsyslog && sudo systemctl start rsyslog
+...

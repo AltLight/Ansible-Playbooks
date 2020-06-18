@@ -1,0 +1,6 @@
+---
+dns_name:
+  - nazerick.mhl
+doamin_admin_user:
+  - vault_ad_admin_pass
+...

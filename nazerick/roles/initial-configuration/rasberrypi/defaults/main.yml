@@ -1,0 +1,5 @@
+---
+update_commands:
+  - apt update
+  - apt upgrade -y
+...
