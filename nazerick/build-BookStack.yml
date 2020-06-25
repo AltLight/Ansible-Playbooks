@@ -1,0 +1,7 @@
+---
+- name: Building BookStack Server
+  hosts: bookstack
+  become: yes
+  roles:
+    - ./roles/System-Builds/BookStack/
+...

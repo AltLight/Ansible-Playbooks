@@ -1,0 +1,6 @@
+---
+  - name: Configuring Yum
+    shell: "{{ item }}"
+    with_items:
+      - "{{ install_commands }}"
+...
