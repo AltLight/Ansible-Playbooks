@@ -1,5 +1,5 @@
 ---
-  - name: Configuring Yum
+  - name: Installing & Configuring BookStack
     shell: "{{ item }}"
     with_items:
       - "{{ install_commands }}"
