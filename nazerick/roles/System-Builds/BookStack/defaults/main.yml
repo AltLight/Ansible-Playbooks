@@ -2,5 +2,5 @@
 install_commands:
   - wget https://raw.githubusercontent.com/BookStackApp/devops/master/scripts/installation-ubuntu-20.04.sh
   - chmod a+x installation-ubuntu-20.04.sh
-  - ./installation-ubuntu-20.04.sh
+  - ./installation-ubuntu-20.04.sh "bookstack.nazerick.mhl"
 ...
