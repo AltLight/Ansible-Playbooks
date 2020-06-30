@@ -1,0 +1,15 @@
+---
+required_packages:
+  - java-11-openjdk-devel
+  - vim
+  - wget
+firewall_commands:
+  - firewall-cmd --add-port=5524/tcp
+  - firewall-cmd --add-port=5525/tcp
+  - firewall-cmd --add-port=5526/tcp
+  - firewall-cmd --add-port=5526/tcp
+  - firewall-cmd --add-port=5528/tcp
+  - firewall-cmd --add-port=5529/tcp
+  - firewall-cmd --add-port=5530/tcp
+  - firewall-cmd --reload
+...

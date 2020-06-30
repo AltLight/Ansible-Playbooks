@@ -1,0 +1,68 @@
+---
+# Install Dependicies:
+- name: Install Package(s)
+  yum:
+    name: "{{ required_packages }}"
+    state: present
+
+# Add the Elasticsearch apt repo. For higher versions 8+ of the stack - use '8.x-prerelease':
+- name: Adding Elasticsearch repo
+  yum_repository:
+    name: ELK
+    description: ELK YUM repo
+    baseurl: https://artifacts.elastic.co/packages/7.x/yum
+    gpgkey: https://packages.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+# Install Logstash
+- name: Install Logstash with yum
+  yum:
+    update_cache: yes
+    name: logstash
+    state: present
+
+# Configurations
+- name: Setting Node Name
+  lineinfile:
+   destfile: /etc/logstash/logstash.yml
+   regexp: '# node.name: test'
+   line: 'node.name: Logstash'
+    
+- name: Setting Pipeline Workers
+  lineinfile:
+   destfile: /etc/logstash/logstash.yml
+   regexp: '# pipeline.workers: 2'
+   line: 'pipeline.workers: 1'
+
+- name: Copying Pipeline.yml
+  copy:
+    src: ~/ansible/nazerick/roles/System-Builds/Logstash/files/pipelines.yml
+    dest: /etc/logstash
+
+- name: Create Pattern Directory
+  file:
+    path: /etc/logstash/patterns
+    state: directory
+
+- name: Copy Pattern files
+  copy:
+    src: ~/ansible/nazerick/roles/System-Builds/Logstash/files/patterns/
+    dest: /etc/logstash/patterns
+
+- name: Copying .conf files
+  copy:
+    src: ~/ansible/nazerick/roles/System-Builds/Logstash/files/conf/
+    dest: /etc/logstash/conf.d
+
+# Starting Logstash
+- name: Starting logstash
+  systemd:
+   name: logstash
+   state: started
+
+# Configure Firewall:
+- name: Configuring firewall
+  shell: "{{ item }}"
+  with_items:
+    - "{{ firewall_commands }}"
+...

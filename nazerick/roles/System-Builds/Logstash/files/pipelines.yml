@@ -1,0 +1,28 @@
+# This file is where you define your pipelines. You can define multiple.
+# For more information on multiple pipelines, see the documentation:
+#   https://www.elastic.co/guide/en/logstash/current/multiple-pipelines.html
+
+- pipeline.id: cisco-pipeline
+  path.config: "/etc/logstash/conf.d/cisco.conf"
+  pipeline.workers: 1
+  queue.type: persisted
+- pipeline.id: pfsense-pipeline
+  path.config: "/etc/logstash/conf.d/pfsense.conf"
+  pipeline.workers: 1
+  queue.type: persisted
+- pipeline.id: pihole-pipeline
+  path.config: "/etc/logstash/conf.d/pihole.conf"
+  pipeline.workers: 1
+  queue.type: persisted
+- pipeline.id: filebeat-pipeline
+  path.config: "/etc/logstash/conf.d/filebeat.conf"
+  pipeline.workers: 1
+  queue.type: persisted
+- pipeline.id: winlogbeat-pipeline
+  path.config: "/etc/logstash/conf.d/winlogbeat.conf"
+  pipeline.workers: 1
+  queue.type: persisted
+- pipeline.id: vmware-pipeline
+  path.config: "/etc/logstash/conf.d/vmware.conf"
+  pipeline.workers: 1
+  queue.type: persisted

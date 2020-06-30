@@ -1,0 +1,8 @@
+---
+- name: Deploy & Configure Logstash
+  hosts: logstash
+  become: yes
+  become_user: root
+  roles:
+    - ./roles/System-Builds/Logstash/
+...
