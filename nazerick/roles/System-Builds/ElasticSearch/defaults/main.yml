@@ -1,0 +1,14 @@
+---
+required_packages:
+  - java-11-openjdk-devel
+  - vim
+service_commands:
+  - systemctl daemon-reload
+  - systemctl stop elasticsearch
+  - systemctl start elasticsearch
+  - systemctl enable elasticsearch
+final_commands:
+  - firewall-cmd --add-port=9200/tcp
+  - firewall-cmd --add-port=9200/udp
+  - firewall-cmd --reload
+...
