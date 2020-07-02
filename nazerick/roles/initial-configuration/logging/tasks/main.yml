@@ -1,0 +1,15 @@
+---
+- name: Defining Elasticsearch URL
+  lineinfile:
+    destfile: /etc/rsyslog.conf
+    insertafter: EOF
+    line: '*.* @@10.8.5.50:5530'
+
+- name: reload NetworkManager
+  systemd:
+    name: NetworkManager
+    state: reloaded
+
+- name: Restarting Service
+  shell: systemctl restart rsyslog
+...

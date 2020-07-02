@@ -20,6 +20,7 @@ default_apps:
   - openldap-clients
   - policycoreutils-python
   - open-vm-tools
+  - rsyslog
 service_commands:
   - sudo systemctl enable rsyslog && sudo systemctl start rsyslog
 ...

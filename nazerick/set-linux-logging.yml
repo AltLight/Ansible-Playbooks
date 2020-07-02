@@ -1,0 +1,7 @@
+---
+- name: Send linux logs to Logstash
+  hosts: alllinux
+  become: yes
+  roles:
+    - ./roles/initial-configuration/logging
+...

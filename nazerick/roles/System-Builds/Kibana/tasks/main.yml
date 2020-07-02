@@ -25,7 +25,7 @@
   lineinfile:
    destfile: /etc/kibana/kibana.yml
    regexp: 'server.host:'
-   line: 'server.host: {{ kibana_ip }}'
+   line: 'server.host: 10.8.6.40'
 
 - name: Defining server port
   lineinfile:
@@ -37,7 +37,7 @@
   lineinfile:
    destfile: /etc/kibana/kibana.yml
    regexp: '#server.name: "your-hostname"'
-   line: '#server.name: "kibana"'    
+   line: 'server.name: "kibana"'    
 
 - name: Defining Elasticsearch URL
   lineinfile:
@@ -57,8 +57,8 @@
    state: started
 
 # Configure Firewall:
-- name: Configuring firewall
+- name: Configuring firewall & Enabling service
   shell: "{{ item }}"
   with_items:
-    - "{{ firewall_commands }}"
+    - "{{ final_commands }}"
 ...

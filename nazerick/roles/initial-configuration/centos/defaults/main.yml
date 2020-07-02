@@ -24,6 +24,7 @@ default_apps:
   - openldap-clients
   - policycoreutils-python
   - open-vm-tools
+  - rsyslog
 firewalld_commands:
   - sudo firewall-cmd --add-service=cockpit --permanent
   - sudo firewall-cmd --reload
