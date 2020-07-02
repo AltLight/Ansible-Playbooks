@@ -2,7 +2,6 @@
 update_commands:
   - apt update
   - apt upgrade
-
 default_apps:
   - vim
   - wget
@@ -20,7 +19,7 @@ default_apps:
   - krb5-workstation
   - openldap-clients
   - policycoreutils-python
-
+  - open-vm-tools
 service_commands:
   - sudo systemctl enable rsyslog && sudo systemctl start rsyslog
 ...

@@ -1,0 +1,7 @@
+---
+- name: Deploy & Configure Kibana
+  hosts: kibana
+  become: yes
+  roles:
+    - ./roles/System-Builds/Kibana/
+...

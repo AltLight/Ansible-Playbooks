@@ -1,0 +1,17 @@
+---
+  - name: Update Linux DNS Configuration
+    hosts: alllinux
+    become: yes
+    tasks:
+      - name: configure name servers
+        net_system:
+          name_servers:
+            - 172.16.0.5
+            - 172.16.0.10
+          domain-search:
+            - nazerick.mhl
+      - name: reload NetworkManager
+        systemd:
+          name: NetworkManager
+          state: reloaded
+...

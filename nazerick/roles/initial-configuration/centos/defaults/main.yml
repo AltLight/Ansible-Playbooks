@@ -2,11 +2,9 @@
 yumrun_commands:
   - chmod a+x /opt/nazerick/Connect_To_Local_Yum_Repo.sh
   - /opt/nazerick/Connect_To_Local_Yum_Repo.sh | bash
-
 update_commands:
   - sudo yum install -y epel-release
   - sudo yum update -y
-
 default_apps:
   - vim
   - cockpit
@@ -25,11 +23,10 @@ default_apps:
   - krb5-workstation
   - openldap-clients
   - policycoreutils-python
-
+  - open-vm-tools
 firewalld_commands:
   - sudo firewall-cmd --add-service=cockpit --permanent
   - sudo firewall-cmd --reload
-
 service_commands:
   - sudo systemctl enable cockpit && sudo systemctl start cockpit
   - sudo systemctl enable rsyslog && sudo systemctl start rsyslog

@@ -2,10 +2,7 @@
 #
 # Playbook to install the ELK stack + Beats
 #
-- hosts: elkservers
-  become: yes
-  become_user: root
-  roles:
-  - { role: ./roles/System-Builds/elasticsearch }
-  - { role: ./roles/System-Builds/kibana }
-  - { role: ./roles/System-Builds/metricbeat }
+- import_playbook: build-Elasticsearch.yml
+- import_playbook: build-Logstash.yml
+- import_playbook: build-Kibana.yml
+...

@@ -60,9 +60,9 @@
    name: logstash
    state: started
 
-# Configure Firewall:
-- name: Configuring firewall
+# Finish Config:
+- name: Configuring firewall & Enabeling services
   shell: "{{ item }}"
   with_items:
-    - "{{ firewall_commands }}"
+    - "{{ final_commands }}"
 ...

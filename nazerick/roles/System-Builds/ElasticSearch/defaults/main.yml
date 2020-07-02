@@ -1,14 +1,16 @@
 ---
+elasticsearch_ip:
+  - 10.8.5.30
 required_packages:
   - java-11-openjdk-devel
+  - policycoreutils-python
   - vim
 service_commands:
   - systemctl daemon-reload
   - systemctl stop elasticsearch
-  - systemctl start elasticsearch
   - systemctl enable elasticsearch
 final_commands:
-  - firewall-cmd --add-port=9200/tcp
-  - firewall-cmd --add-port=9200/udp
+  - firewall-cmd --add-port=9200/tcp --permanent
+  - firewall-cmd --add-port=9200/udp --permanent
   - firewall-cmd --reload
 ...

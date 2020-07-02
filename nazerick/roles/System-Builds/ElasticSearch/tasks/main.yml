@@ -1,6 +1,6 @@
 ---
 # Install Dependicies:
-- name: Install Package(s)
+- name: Install Required Package(s)
   yum:
     name: "{{ required_packages }}"
     state: present
@@ -34,29 +34,30 @@
    regexp: '#node.name: node-1'
    line: 'node.name: Master-01'
 
+
+- name: Updating the config file to allow outside access
+  lineinfile:
+   destfile: /etc/elasticsearch/elasticsearch.yml
+   regexp: 'network.host:'
+   line: 'network.host: {{ elasticsearch_ip }}'
+
+- name: Updating the port in config file 
+  lineinfile:
+   destfile: /etc/elasticsearch/elasticsearch.yml
+   regexp: 'http.port:'
+   line: 'http.port: 9200'
+
 - name: Set Memory Lock
   lineinfile:
    destfile: /etc/elasticsearch/elasticsearch.yml
    regexp: '#bootstrap.memory_lock: true'
    line: 'bootstrap.memory_lock: true'
 
-- name: Updating the config file to allow outside access
+- name: Disable Bootstrap Checks
   lineinfile:
    destfile: /etc/elasticsearch/elasticsearch.yml
-   regexp: 'network.host:'
-   line: 'network.host: 10.8.5.35'
-
-- name: Setting Seed Hosts
-  lineinfile:
-   destfile: /etc/elasticsearch/elasticsearch.yml
-   regexp: '#discovery.seed_hosts: ["host1", "host2"]'
-   line: 'discovery.seed_hosts: ["127.0.0.1"]'
-
-- name: Set initial Master Node
-  lineinfile:
-   destfile: /etc/elasticsearch/elasticsearch.yml
-   regexp: '#cluster.initial_master_nodes: ["node-1", "node-2"]'
-   line: 'cluster.initial_master_nodes: ["Master-01"]'
+   insertafter: '# --------------------------------- Discovery ----------------------------------'
+   line: 'discovery.type: single-node'
 
 - name: Set minimum jvm heap size
   lineinfile:
@@ -70,14 +71,8 @@
    regexp: '-Xmx1g'
    line: '-Xmx8g'
 
-- name: Updating the port in config file 
-  lineinfile:
-   destfile: /etc/elasticsearch/elasticsearch.yml
-   regexp: 'http.port:'
-   line: 'http.port: 9200'
-
 # Restart Daemon
-- name: Starting Elasticsearch
+- name: Configuring Elasticsearch Service
   shell: "{{ item }}"
   with_items:
     - "{{ service_commands }}"

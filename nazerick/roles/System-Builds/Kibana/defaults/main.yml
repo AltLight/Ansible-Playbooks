@@ -1,0 +1,19 @@
+---
+kibana_ip:
+  - 10.8.6.40
+required_packages:
+  - java-11-openjdk-devel
+  - policycoreutils-python
+  - vim
+log_commands:
+  - mkdir -p /var/log/kibana
+  - chmod 777 /var/log/kibana
+  - chown kibana:kibana /var/log/kibana
+  - touch 
+firewall_commands:
+  - firewall-cmd --add-service=http --permanent
+  - firewall-cmd --add-port=5601/tcp --permanent
+  - firewall-cmd --add-port=5601/udp --permanent
+  - firewall-cmd --add-forward-port=port=80:proto=tcp:toport=5601 --permanent 
+  - firewall-cmd --reload
+...

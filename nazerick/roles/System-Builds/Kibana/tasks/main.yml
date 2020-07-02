@@ -1,0 +1,64 @@
+---
+# Install Dependicies:
+- name: Install Package(s)
+  yum:
+    name: "{{ required_packages }}"
+    state: present
+
+# Add the Elasticsearch apt repo. For higher versions 8+ of the stack - use '8.x-prerelease':
+- name: Adding Elasticsearch repo
+  yum_repository:
+    name: ELK
+    description: ELK YUM repo
+    baseurl: https://artifacts.elastic.co/packages/7.x/yum
+    gpgkey: https://packages.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+# Install kibana
+- name: Install Kibana with yum
+  yum:
+    name: kibana
+    state: present
+ 
+# Configurations
+- name: Updating the config file to allow outside access
+  lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: 'server.host:'
+   line: 'server.host: {{ kibana_ip }}'
+
+- name: Defining server port
+  lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: 'server.port:'
+   line: 'server.port: 5601'
+
+- name: Setting Server Name
+  lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: '#server.name: "your-hostname"'
+   line: '#server.name: "kibana"'    
+
+- name: Defining Elasticsearch URL
+  lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: '#elasticsearch.hosts: ["http://localhost:9200"]'
+   line: 'elasticsearch.hosts: "http://elasticsearch:9200"'
+
+- name: Configuring firewall
+  shell: "{{ item }}"
+  with_items:
+    - "{{ log_commands }}"
+
+# Starting Kibana
+- name: Starting Kibana
+  systemd:
+   name: kibana
+   state: started
+
+# Configure Firewall:
+- name: Configuring firewall
+  shell: "{{ item }}"
+  with_items:
+    - "{{ firewall_commands }}"
+...

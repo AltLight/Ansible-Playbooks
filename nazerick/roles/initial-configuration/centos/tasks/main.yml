@@ -6,7 +6,7 @@
 
   - name: Copy Connect To Yum Script
     copy:
-      src: /ansible/artifacts/Connect_To_Local_Yum_Repo.sh
+      src: /home/dleitz/ansible/artifacts/Connect_To_Local_Yum_Repo.sh
       dest: /opt/nazerick/Connect_To_Local_Yum_Repo.sh
 
   - name: Configuring Yum
